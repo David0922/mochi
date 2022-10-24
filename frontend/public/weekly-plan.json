@@ -1,16 +1,5 @@
 [
   {
-    "day": 0,
-    "startTime": "0700",
-    "endTime": "0800",
-    "title": "morning routine"
-  },
-  {
-    "startTime": "2300",
-    "endTime": "2400",
-    "title": "night routine"
-  },
-  {
     "days": [
       1,
       2,
@@ -23,135 +12,54 @@
     "title": "work hours"
   },
   {
-    "day": 1,
-    "startTime": "0000",
-    "endTime": "0800",
-    "title": "A"
+    "days": [
+      1,
+      4
+    ],
+    "startTime": "1900",
+    "endTime": "2015",
+    "title": "underdog dev"
+  },
+  {
+    "day": 6,
+    "startTime": "1930",
+    "endTime": "2100",
+    "title": "leetcode weekly competition"
   },
   {
     "day": 1,
-    "startTime": "0200",
-    "endTime": "0400",
-    "title": "B"
+    "startTime": "0915",
+    "endTime": "1000",
+    "title": "team oncall handoff"
   },
   {
     "day": 1,
-    "startTime": "0300",
-    "endTime": "0500",
-    "title": "C"
+    "startTime": "1005",
+    "endTime": "1030",
+    "title": "org oncall handoff"
   },
   {
     "day": 1,
-    "startTime": "0700",
-    "endTime": "0900",
-    "title": "D"
-  },
-  {
-    "day": 2,
-    "startTime": "0100",
-    "endTime": "0300",
-    "title": "A"
-  },
-  {
-    "day": 2,
-    "startTime": "0200",
-    "endTime": "0700",
-    "title": "B"
-  },
-  {
-    "day": 2,
-    "startTime": "0400",
-    "endTime": "0800",
-    "title": "C"
-  },
-  {
-    "day": 2,
-    "startTime": "0500",
-    "endTime": "0900",
-    "title": "D"
-  },
-  {
-    "day": 2,
-    "startTime": "0600",
-    "endTime": "0900",
-    "title": "E1"
-  },
-  {
-    "day": 2,
-    "startTime": "0600",
-    "endTime": "0900",
-    "title": "E2"
-  },
-  {
-    "day": 2,
-    "startTime": "0600",
-    "endTime": "0900",
-    "title": "E3"
-  },
-  {
-    "day": 2,
-    "startTime": "0600",
-    "endTime": "0900",
-    "title": "E4"
+    "startTime": "1100",
+    "endTime": "1200",
+    "title": "sprint retro"
   },
   {
     "day": 3,
-    "startTime": "0100",
-    "endTime": "0400",
-    "title": "A"
-  },
-  {
-    "day": 3,
-    "startTime": "0200",
-    "endTime": "0500",
-    "title": "B"
-  },
-  {
-    "day": 3,
-    "startTime": "0300",
-    "endTime": "0600",
-    "title": "C"
+    "startTime": "1130",
+    "endTime": "1155",
+    "title": "standup"
   },
   {
     "day": 4,
-    "startTime": "0100",
-    "endTime": "0300",
-    "title": "A"
+    "startTime": "1000",
+    "endTime": "1100",
+    "title": "team meeting"
   },
   {
     "day": 4,
-    "startTime": "0200",
-    "endTime": "0400",
-    "title": "B"
-  },
-  {
-    "day": 4,
-    "startTime": "0300",
-    "endTime": "0500",
-    "title": "C"
-  },
-  {
-    "day": 5,
-    "startTime": "0100",
-    "endTime": "0400",
-    "title": "A"
-  },
-  {
-    "day": 5,
-    "startTime": "0200",
-    "endTime": "0500",
-    "title": "B"
-  },
-  {
-    "day": 5,
-    "startTime": "0300",
-    "endTime": "0600",
-    "title": "C"
-  },
-  {
-    "day": 5,
-    "startTime": "0400",
-    "endTime": "0700",
-    "title": "D"
+    "startTime": "1700",
+    "endTime": "1730",
+    "title": "1-1 w/ manager"
   }
 ]

@@ -15,8 +15,8 @@ function groupEventsByDay(events: Event[]) {
   events.forEach(event => {
     if (event.day !== undefined) groups[event.day].push(event);
     else if (event.days !== undefined)
-      event.days.forEach(day => groups[day].push(event));
-    else groups.forEach(group => group.push(event));
+      event.days.forEach(day => groups[day].push({ ...event }));
+    else groups.forEach(group => group.push({ ...event }));
   });
 
   groups.forEach(group =>

@@ -4,5 +4,154 @@
     "startTime": "0700",
     "endTime": "0800",
     "title": "morning routine"
+  },
+  {
+    "startTime": "2300",
+    "endTime": "2400",
+    "title": "night routine"
+  },
+  {
+    "days": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "startTime": "0900",
+    "endTime": "1700",
+    "title": "work hours"
+  },
+  {
+    "day": 1,
+    "startTime": "0000",
+    "endTime": "0800",
+    "title": "A"
+  },
+  {
+    "day": 1,
+    "startTime": "0200",
+    "endTime": "0400",
+    "title": "B"
+  },
+  {
+    "day": 1,
+    "startTime": "0300",
+    "endTime": "0500",
+    "title": "C"
+  },
+  {
+    "day": 1,
+    "startTime": "0700",
+    "endTime": "0900",
+    "title": "D"
+  },
+  {
+    "day": 2,
+    "startTime": "0100",
+    "endTime": "0300",
+    "title": "A"
+  },
+  {
+    "day": 2,
+    "startTime": "0200",
+    "endTime": "0700",
+    "title": "B"
+  },
+  {
+    "day": 2,
+    "startTime": "0400",
+    "endTime": "0800",
+    "title": "C"
+  },
+  {
+    "day": 2,
+    "startTime": "0500",
+    "endTime": "0900",
+    "title": "D"
+  },
+  {
+    "day": 2,
+    "startTime": "0600",
+    "endTime": "0900",
+    "title": "E1"
+  },
+  {
+    "day": 2,
+    "startTime": "0600",
+    "endTime": "0900",
+    "title": "E2"
+  },
+  {
+    "day": 2,
+    "startTime": "0600",
+    "endTime": "0900",
+    "title": "E3"
+  },
+  {
+    "day": 2,
+    "startTime": "0600",
+    "endTime": "0900",
+    "title": "E4"
+  },
+  {
+    "day": 3,
+    "startTime": "0100",
+    "endTime": "0400",
+    "title": "A"
+  },
+  {
+    "day": 3,
+    "startTime": "0200",
+    "endTime": "0500",
+    "title": "B"
+  },
+  {
+    "day": 3,
+    "startTime": "0300",
+    "endTime": "0600",
+    "title": "C"
+  },
+  {
+    "day": 4,
+    "startTime": "0100",
+    "endTime": "0300",
+    "title": "A"
+  },
+  {
+    "day": 4,
+    "startTime": "0200",
+    "endTime": "0400",
+    "title": "B"
+  },
+  {
+    "day": 4,
+    "startTime": "0300",
+    "endTime": "0500",
+    "title": "C"
+  },
+  {
+    "day": 5,
+    "startTime": "0100",
+    "endTime": "0400",
+    "title": "A"
+  },
+  {
+    "day": 5,
+    "startTime": "0200",
+    "endTime": "0500",
+    "title": "B"
+  },
+  {
+    "day": 5,
+    "startTime": "0300",
+    "endTime": "0600",
+    "title": "C"
+  },
+  {
+    "day": 5,
+    "startTime": "0400",
+    "endTime": "0700",
+    "title": "D"
   }
 ]

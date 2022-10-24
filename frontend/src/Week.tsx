@@ -1,15 +1,7 @@
 import { Component, createEffect, createResource } from 'solid-js';
 import State from './state';
 import { durationStr, join, strTimeToMinute } from './util';
-
-export interface Event {
-  day?: number;
-  startTime: string;
-  endTime: string;
-  title?: string;
-  // overlaps?: number;
-  // offset?: number;
-}
+import { Event, fetchEvents } from './week';
 
 const EventComp: Component<{ event: Event }> = props => {
   const {
@@ -20,14 +12,23 @@ const EventComp: Component<{ event: Event }> = props => {
 
   let ref: HTMLDivElement | undefined;
 
+  const maxOverlaps = 5;
+
   createEffect(() => {
     if (!ref) return;
 
     const startMinute = strTimeToMinute(props.event.startTime);
     const duration = strTimeToMinute(props.event.endTime) - startMinute;
 
+    const maxOffset = Math.min(props.event.maxOffset, maxOverlaps);
+    const offset = Math.min(props.event.offset, maxOverlaps);
+    const step = 10; // percent
+
     ref.style.top = `${startMinute * 0.05}rem`;
     ref.style.height = `${Math.max(duration, 30) * 0.05}rem`;
+
+    ref.style.left = `${offset * step}%`;
+    ref.style.width = `${100 - maxOffset * step}%`;
   });
 
   return (
@@ -36,7 +37,6 @@ const EventComp: Component<{ event: Event }> = props => {
       class={join(
         'absolute',
         'left-0',
-        'w-full',
         'px-2',
         'py-1',
         'border',
@@ -52,16 +52,12 @@ const EventComp: Component<{ event: Event }> = props => {
   );
 };
 
-const EventWrapper: Component<{ day: number }> = props => {
+const EventWrapper: Component<{ day: number; events: Event[] }> = props => {
   const {
     color: {
       event: { secondary },
     },
   } = State.getInstance().getTheme();
-
-  const [events] = createResource<Event[]>(async () =>
-    (await fetch('/weekly-plan.json')).json()
-  );
 
   let clockRef: HTMLDivElement | undefined;
 
@@ -76,18 +72,16 @@ const EventWrapper: Component<{ day: number }> = props => {
       clockRef.style.top = `${minute * 0.05}rem`;
     };
 
-    setInterval(updateClock, 2 * 60 * 1000); // update every 2 minutes
+    setInterval(updateClock, 5 * 60 * 1000); // update every 5 minutes
 
     updateClock();
   });
 
   return (
     <div class='absolute top-0 left-0 w-11/12 h-full'>
-      {events.state === 'ready' &&
-        events()
-          .filter(event => event.day === undefined || event.day === props.day)
-          .sort((a, b) => a.startTime.localeCompare(b.startTime))
-          .map(event => <EventComp event={event} />)}
+      {props.events.map(event => (
+        <EventComp event={event} />
+      ))}
       <div
         ref={clockRef}
         class={`absolute left-0 w-full border-t ${secondary.border}`}
@@ -99,12 +93,19 @@ const EventWrapper: Component<{ day: number }> = props => {
 const Week: Component = () => {
   const { color } = State.getInstance().getTheme();
 
+  const [eventGroups] = createResource<Event[][]>(fetchEvents);
+
   const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
   const now = new Date();
   const sundayDate = now.getDate() - now.getDay();
-  const times = Array.from({ length: 24 }, (_, i) =>
-    i ? `0${i}:00`.slice(-5) : ''
-  );
+  const times = Array.from({ length: 24 }, (_, hour) => {
+    // return i ? `0${i}:00`.slice(-5) : '';
+
+    if (!hour) return '';
+    else if (hour < 12) return `${hour} am`;
+    else if (hour === 12) return '12 pm';
+    else return `${hour - 12} pm`;
+  });
 
   const leftWidth = 'w-16';
   const leftProtrusionWidth = 'w-2';
@@ -132,7 +133,8 @@ const Week: Component = () => {
               class={join(
                 'flex',
                 'items-stretch',
-                'justify-between',
+                'justify-end',
+                'gap-x-1.5',
                 leftWidth,
                 cellHeight
               )}>
@@ -156,7 +158,9 @@ const Week: Component = () => {
                   )}
                 />
               ))}
-              <EventWrapper day={i} />
+              {eventGroups.state === 'ready' && (
+                <EventWrapper day={i} events={eventGroups()[i]} />
+              )}
             </div>
           ))}
         </div>

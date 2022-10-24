@@ -1,6 +1,12 @@
-import { Component, createEffect, createResource } from 'solid-js';
+import {
+  Component,
+  createEffect,
+  createResource,
+  createSignal,
+  Show,
+} from 'solid-js';
 import State from './state';
-import { durationStr, join, strTimeToMinute } from './util';
+import { durationStr, join, strTimeToMinute, timeStr } from './util';
 import { Event, fetchEvents } from './week-util';
 
 const EventComp: Component<{ event: Event }> = props => {
@@ -11,6 +17,8 @@ const EventComp: Component<{ event: Event }> = props => {
   } = State.getInstance().getTheme();
 
   let ref: HTMLDivElement | undefined;
+
+  const [multiLine, setMultiLine] = createSignal(true);
 
   const maxOverlaps = 5;
 
@@ -23,6 +31,8 @@ const EventComp: Component<{ event: Event }> = props => {
     const maxOffset = Math.min(props.event.maxOffset, maxOverlaps);
     const offset = Math.min(props.event.offset, maxOverlaps);
     const step = 10; // percent
+
+    setMultiLine(duration >= 60 || !props.event.title);
 
     ref.style.top = `${startMinute * 0.05}rem`;
     ref.style.height = `${Math.max(duration, 30) * 0.05}rem`;
@@ -44,9 +54,13 @@ const EventComp: Component<{ event: Event }> = props => {
         primary.bg
       )}>
       <div class='break-words h-full overflow-y-clip text-xs'>
-        <span>{durationStr(props.event.startTime, props.event.endTime)}</span>
-        <br />
-        <span>{props.event.title || ''}</span>
+        <Show
+          when={multiLine()}
+          fallback={`${timeStr(props.event.startTime)}, ${props.event.title}`}>
+          <span>{durationStr(props.event.startTime, props.event.endTime)}</span>
+          <br />
+          <span>{props.event.title || ''}</span>
+        </Show>
       </div>
     </div>
   );

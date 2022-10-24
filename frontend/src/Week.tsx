@@ -1,7 +1,7 @@
 import { Component, createEffect, createResource } from 'solid-js';
 import State from './state';
 import { durationStr, join, strTimeToMinute } from './util';
-import { Event, fetchEvents } from './week';
+import { Event, fetchEvents } from './week-util';
 
 const EventComp: Component<{ event: Event }> = props => {
   const {

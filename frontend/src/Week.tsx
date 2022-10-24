@@ -82,10 +82,12 @@ const EventWrapper: Component<{ day: number; events: Event[] }> = props => {
       {props.events.map(event => (
         <EventComp event={event} />
       ))}
-      <div
-        ref={clockRef}
-        class={`absolute left-0 w-full border-t ${secondary.border}`}
-      />
+      <div ref={clockRef} class='absolute left-0 w-full'>
+        <div class={`border-t ${secondary.border}`} />
+        <div
+          class={`absolute w-2 h-2 -left-1 -top-1 rounded-full ${secondary.bg}`}
+        />
+      </div>
     </div>
   );
 };

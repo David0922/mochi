@@ -39,7 +39,7 @@ export const dark: Color = {
     },
     secondary: {
       border: 'border-red-600',
-      bg: '',
+      bg: 'bg-red-600',
     },
   },
 };

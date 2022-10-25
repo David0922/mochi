@@ -5,8 +5,8 @@ import {
   createSignal,
   Show,
 } from 'solid-js';
-import State from './state';
-import { durationStr, join, strTimeToMinute, timeStr } from './util';
+import State from './../../lib/state';
+import { durationStr, join, strTimeToMinute, timeStr } from './../../lib/util';
 import { Event, fetchEvents } from './week-util';
 
 const EventComp: Component<{ event: Event }> = props => {

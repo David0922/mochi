@@ -1,6 +1,6 @@
 import { Component } from 'solid-js';
-import State from './state';
-import Week from './Week';
+import State from './../../lib/state';
+import Week from './../Week';
 
 const App: Component = () => {
   State.getInstance();

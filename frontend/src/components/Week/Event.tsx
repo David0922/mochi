@@ -1,4 +1,5 @@
 import { Component, createEffect, createSignal, Show } from 'solid-js';
+import Modal from '../../ui/Modal';
 import State from './../../lib/state';
 import { durationStr, join, strTimeToMinute, timeStr } from './../../lib/util';
 import { Event } from './week-util';
@@ -13,6 +14,8 @@ const EventComp: Component<{ event: Event }> = props => {
   let ref: HTMLDivElement | undefined;
 
   const [multiLine, setMultiLine] = createSignal(true);
+
+  const [showDetail, setShowDetail] = createSignal(false);
 
   const maxOverlaps = 5;
 
@@ -36,32 +39,46 @@ const EventComp: Component<{ event: Event }> = props => {
   });
 
   return (
-    <div
-      ref={ref}
-      class={join(
-        'absolute',
-        'left-0',
-        'px-2',
-        'py-1',
-        'border',
-        primary.border,
-        primary.bg
-      )}>
-      <div class='break-words h-full overflow-y-clip text-xs'>
-        <Show
-          when={multiLine()}
-          fallback={`${timeStr(props.event.startTime)}, ${props.event.title}`}>
-          <span>{durationStr(props.event.startTime, props.event.endTime)}</span>
-          <br />
-          <span>{props.event.title || ''}</span>
-        </Show>
+    <>
+      <div
+        ref={ref}
+        class={join(
+          'absolute',
+          'left-0',
+          'px-2',
+          'py-1',
+          'border',
+          primary.border,
+          primary.bg
+        )}
+        onclick={() => setShowDetail(true)}>
+        <div class='break-words h-full overflow-y-clip text-xs'>
+          <Show
+            when={multiLine()}
+            fallback={`${timeStr(props.event.startTime)}, ${
+              props.event.title
+            }`}>
+            <span>
+              {durationStr(props.event.startTime, props.event.endTime)}
+            </span>
+            <br />
+            <span>{props.event.title || ''}</span>
+          </Show>
+        </div>
       </div>
-    </div>
+      <Modal open={showDetail} setOpen={setShowDetail}>
+        <EventDetail event={props.event} />
+      </Modal>
+    </>
   );
 };
 
 export const EventDetail: Component<{ event: Event }> = props => {
-  return <pre>{JSON.stringify(props.event, null, 2)}</pre>;
+  return (
+    <pre class='border px-8 py-4 rounded-xl'>
+      {JSON.stringify(props.event, null, 2)}
+    </pre>
+  );
 };
 
 export const EventWrapper: Component<{

@@ -11,8 +11,8 @@ const App: Component = () => {
         </div>
       </AppBar>
       <div class='flex flex-1 overflow-hidden'>
-        <div class='w-80 overflow-auto'>{/* side bar */}</div>
-        <div class='flex-1 overflow-auto'>
+        <div class='w-80 overflow-auto hide-scrollbar'>{/* side bar */}</div>
+        <div class='flex-1 overflow-auto hide-scrollbar'>
           <Week />
         </div>
       </div>

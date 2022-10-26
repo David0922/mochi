@@ -8,3 +8,11 @@
   overflow-wrap: break-word;
   word-break: break-word;
 }
+
+.hide-scrollbar {
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}

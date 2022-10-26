@@ -44,7 +44,7 @@ const EventComp: Component<{ event: Event }> = props => {
     setMultiLine(duration >= 60 || !props.event.title);
 
     ref.style.top = `${startMinute * 0.05}rem`;
-    ref.style.height = `${Math.max(duration, 30) * 0.05}rem`;
+    ref.style.height = `${duration * 0.05}rem`;
 
     ref.style.left = `${offset * step}%`;
     ref.style.width = `${100 - maxOffset * step}%`;

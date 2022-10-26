@@ -8,7 +8,10 @@ export default class State {
   private constructor() {
     this.theme = { color: dark };
 
-    document.body.classList.add(this.theme.color.bg.primary);
+    document.body.classList.add(
+      this.theme.color.bg.primary,
+      this.theme.color.text.primary
+    );
   }
 
   public static getInstance() {

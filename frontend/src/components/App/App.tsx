@@ -5,7 +5,14 @@ import Week from './../Week';
 const App: Component = () => {
   State.getInstance();
 
-  return <Week />;
+  return (
+    <div class='flex h-screen'>
+      <div class='w-96'>{/* side bar */}</div>
+      <div class='flex-1'>
+        <Week />
+      </div>
+    </div>
+  );
 };
 
 export default App;

@@ -1,12 +1,15 @@
-import { Accessor, ParentComponent, Setter, Show } from 'solid-js';
+import { ParentComponent, Setter, Show } from 'solid-js';
+import State from '../../lib/state';
 import { join } from '../../lib/util';
 
 const Modal: ParentComponent<{
-  open: Accessor<boolean>;
+  open: boolean;
   setOpen: Setter<boolean>;
 }> = props => {
+  const { color } = State.getInstance().getTheme();
+
   return (
-    <Show when={props.open()}>
+    <Show when={props.open}>
       <div
         class={join(
           'fixed',
@@ -15,13 +18,12 @@ const Modal: ParentComponent<{
           'left-0',
           'top-0',
           'z-50',
-          'grid',
-          'place-items-center',
-          'bg-black/75'
+          'bg-black/75',
+          'py-16'
         )}
         onclick={() => props.setOpen(false)}>
         <div
-          class='w-1/2 max-h-screen overflow-auto'
+          class={`mx-auto w-1/2 max-h-full overflow-auto ${color.bg.primary}`}
           onclick={e => e.stopPropagation()}>
           {props.children}
         </div>

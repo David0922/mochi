@@ -26,7 +26,7 @@ const Week: Component = () => {
   const cellHeight = 'h-12'; // 1 minute = 12/4/60 = 0.05 rem
 
   return (
-    <div class={color.text.primary}>
+    <div class='max-h-full overflow-auto'>
       <div class={`flex sticky top-0 ${color.bg.primary} z-10`}>
         <div class={`flex items-stretch justify-end ${leftWidth}`}>
           <div class={`border-b ${color.border} ${leftProtrusionWidth}`} />

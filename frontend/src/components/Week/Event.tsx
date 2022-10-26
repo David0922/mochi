@@ -1,4 +1,10 @@
-import { Component, createEffect, createSignal, Show } from 'solid-js';
+import {
+  Component,
+  createEffect,
+  createSignal,
+  onCleanup,
+  Show,
+} from 'solid-js';
 import Modal from '../../ui/Modal';
 import State from './../../lib/state';
 import { durationStr, join, strTimeToMinute, timeStr } from './../../lib/util';
@@ -66,19 +72,15 @@ const EventComp: Component<{ event: Event }> = props => {
           </Show>
         </div>
       </div>
-      <Modal open={showDetail} setOpen={setShowDetail}>
+      <Modal open={showDetail()} setOpen={setShowDetail}>
         <EventDetail event={props.event} />
       </Modal>
     </>
   );
 };
 
-export const EventDetail: Component<{ event: Event }> = props => {
-  return (
-    <pre class='border px-8 py-4 rounded-xl'>
-      {JSON.stringify(props.event, null, 2)}
-    </pre>
-  );
+const EventDetail: Component<{ event: Event }> = props => {
+  return <pre class='px-8 py-4'>{JSON.stringify(props.event, null, 2)}</pre>;
 };
 
 export const EventWrapper: Component<{
@@ -104,7 +106,10 @@ export const EventWrapper: Component<{
       clockRef.style.top = `${minute * 0.05}rem`;
     };
 
-    setInterval(updateClock, 5 * 60 * 1000); // update every 5 minutes
+    // update every 5 minutes
+    const clock = setInterval(updateClock, 5 * 60 * 1000);
+
+    onCleanup(() => clearInterval(clock));
 
     updateClock();
   });

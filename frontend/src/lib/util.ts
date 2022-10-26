@@ -14,3 +14,15 @@ export function timeStr(time: string) {
 export function durationStr(start: string, end: string) {
   return `${timeStr(start)} - ${timeStr(end)}`;
 }
+
+export function sundayDate(weekOffset = 0) {
+  const date = new Date();
+  date.setDate(date.getDate() - date.getDay() + weekOffset);
+  return date;
+}
+
+export function dateOfDay(day: number, weekOffset = 0) {
+  const date = sundayDate(weekOffset);
+  date.setDate(date.getDate() + day);
+  return date;
+}

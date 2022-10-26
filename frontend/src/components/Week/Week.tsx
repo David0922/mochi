@@ -1,6 +1,6 @@
 import { Component, createResource } from 'solid-js';
 import State from './../../lib/state';
-import { join } from './../../lib/util';
+import { dateOfDay, join } from './../../lib/util';
 import { EventWrapper } from './Event';
 import { Event, fetchEvents } from './week-util';
 
@@ -10,8 +10,7 @@ const Week: Component = () => {
   const [eventGroups] = createResource<Event[][]>(fetchEvents);
 
   const days = ['SUN', 'MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT'];
-  const now = new Date();
-  const sundayDate = now.getDate() - now.getDay();
+
   const times = Array.from({ length: 24 }, (_, hour) => {
     // return i ? `0${i}:00`.slice(-5) : '';
 
@@ -35,7 +34,7 @@ const Week: Component = () => {
           <div class='flex-1 text-center'>
             <div>{day}</div>
             <div class={`border-b border-l ${color.border}`}>
-              {sundayDate + i}
+              {dateOfDay(i).getDate()}
             </div>
           </div>
         ))}

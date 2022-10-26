@@ -154,8 +154,8 @@ export const EventWrapper: Component<{
       clockRef.style.top = `${minute * 0.05}rem`;
     };
 
-    // update every 5 minutes
-    const clock = setInterval(updateClock, 5 * 60 * 1000);
+    // update every 2 minutes
+    const clock = setInterval(updateClock, 2 * 60 * 1000);
 
     onCleanup(() => clearInterval(clock));
 

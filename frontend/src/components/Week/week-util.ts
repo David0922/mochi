@@ -1,8 +1,8 @@
 export interface Event {
   day?: number;
   days?: [number];
-  startTime: string;
-  endTime: string;
+  start: string;
+  end: string;
   title?: string;
   details?: string;
   offset?: number;
@@ -19,9 +19,7 @@ function groupEventsByDay(events: Event[]) {
     else groups.forEach(group => group.push({ ...event }));
   });
 
-  groups.forEach(group =>
-    group.sort((a, b) => a.startTime.localeCompare(b.startTime))
-  );
+  groups.forEach(group => group.sort((a, b) => a.start.localeCompare(b.start)));
 
   return groups;
 }
@@ -30,10 +28,10 @@ function fillOverlapsAndOffset(events: Event[]) {
   const n = events.length;
 
   const overlap = (i, j) => {
-    const a0 = Number(events[i].startTime),
-      a1 = Number(events[i].endTime),
-      b0 = Number(events[j].startTime),
-      b1 = Number(events[j].endTime);
+    const a0 = Number(events[i].start),
+      a1 = Number(events[i].end),
+      b0 = Number(events[j].start),
+      b1 = Number(events[j].end);
 
     return !(a1 <= b0 || b1 <= a0);
   };

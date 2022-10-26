@@ -11,6 +11,6 @@ export function timeStr(time: string) {
   return `${time.slice(0, 2)}:${time.slice(-2)}`;
 }
 
-export function durationStr(startTime: string, endTime: string) {
-  return `${timeStr(startTime)} - ${timeStr(endTime)}`;
+export function durationStr(start: string, end: string) {
+  return `${timeStr(start)} - ${timeStr(end)}`;
 }

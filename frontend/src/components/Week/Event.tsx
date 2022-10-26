@@ -28,8 +28,8 @@ const EventComp: Component<{ event: Event }> = props => {
   createEffect(() => {
     if (!ref) return;
 
-    const startMinute = strTimeToMinute(props.event.startTime);
-    const duration = strTimeToMinute(props.event.endTime) - startMinute;
+    const startMinute = strTimeToMinute(props.event.start);
+    const duration = strTimeToMinute(props.event.end) - startMinute;
 
     const maxOffset = Math.min(props.event.maxOffset, maxOverlaps);
     const offset = Math.min(props.event.offset, maxOverlaps);
@@ -61,12 +61,8 @@ const EventComp: Component<{ event: Event }> = props => {
         <div class='break-words h-full overflow-y-clip text-xs'>
           <Show
             when={multiLine()}
-            fallback={`${timeStr(props.event.startTime)}, ${
-              props.event.title
-            }`}>
-            <span>
-              {durationStr(props.event.startTime, props.event.endTime)}
-            </span>
+            fallback={`${timeStr(props.event.start)}, ${props.event.title}`}>
+            <span>{durationStr(props.event.start, props.event.end)}</span>
             <br />
             <span>{props.event.title || ''}</span>
           </Show>

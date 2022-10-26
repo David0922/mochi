@@ -7,8 +7,8 @@
       4,
       5
     ],
-    "startTime": "0900",
-    "endTime": "1700",
+    "start": "0900",
+    "end": "1700",
     "title": "work hours"
   },
   {
@@ -16,50 +16,50 @@
       1,
       4
     ],
-    "startTime": "1900",
-    "endTime": "2015",
+    "start": "1900",
+    "end": "2015",
     "title": "underdog dev"
   },
   {
     "day": 6,
-    "startTime": "1930",
-    "endTime": "2100",
+    "start": "1930",
+    "end": "2100",
     "title": "leetcode weekly competition"
   },
   {
     "day": 1,
-    "startTime": "0915",
-    "endTime": "1000",
+    "start": "0915",
+    "end": "1000",
     "title": "team oncall handoff"
   },
   {
     "day": 1,
-    "startTime": "1005",
-    "endTime": "1030",
+    "start": "1005",
+    "end": "1030",
     "title": "org oncall handoff"
   },
   {
     "day": 1,
-    "startTime": "1100",
-    "endTime": "1200",
+    "start": "1100",
+    "end": "1200",
     "title": "sprint retro"
   },
   {
     "day": 3,
-    "startTime": "1130",
-    "endTime": "1155",
+    "start": "1130",
+    "end": "1155",
     "title": "standup"
   },
   {
     "day": 4,
-    "startTime": "1000",
-    "endTime": "1100",
+    "start": "1000",
+    "end": "1100",
     "title": "team meeting"
   },
   {
     "day": 4,
-    "startTime": "1700",
-    "endTime": "1730",
+    "start": "1700",
+    "end": "1730",
     "title": "1-1 w/ manager"
   }
 ]

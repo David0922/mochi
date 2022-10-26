@@ -25,7 +25,7 @@ export function timeDiffStr(a: Date, b: Date) {
   const t = [];
 
   h && t.push(padZero(h));
-  m && t.push(padZero(m));
+  (h || m) && t.push(padZero(m));
   t.push(padZero(s));
 
   return t.join(':');

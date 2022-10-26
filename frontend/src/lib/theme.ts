@@ -7,6 +7,7 @@ export interface Color {
   text: {
     primary: string;
     secondary: string;
+    faded: string;
     error: string;
   };
   event: {
@@ -24,12 +25,13 @@ export interface Color {
 export const dark: Color = {
   bg: {
     primary: 'bg-neutral-800',
-    secondary: 'neutral-700',
+    secondary: '',
   },
   border: 'border-neutral-700',
   text: {
     primary: 'text-neutral-200',
     secondary: 'text-cyan-300',
+    faded: 'text-neutral-500',
     error: '',
   },
   event: {

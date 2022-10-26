@@ -86,6 +86,10 @@ const EventComp: Component<{ event: Event }> = props => {
 };
 
 const CountDown: Component<{ event: Event }> = props => {
+  const {
+    color: { text },
+  } = State.getInstance().getTheme();
+
   const [ended, setEnded] = createSignal(false);
   const [info, setInfo] = createSignal('');
   const [timeStr, setTimeStr] = createSignal('');
@@ -94,10 +98,10 @@ const CountDown: Component<{ event: Event }> = props => {
     const now = new Date();
 
     if (now < props.event.startDate) {
-      setInfo('starts in ');
+      setInfo('starts in');
       setTimeStr(timeDiffStr(now, props.event.startDate));
     } else if (now < props.event.endDate) {
-      setInfo('ends in ');
+      setInfo('ends in');
       setTimeStr(timeDiffStr(now, props.event.endDate));
     } else {
       setEnded(true);
@@ -114,9 +118,10 @@ const CountDown: Component<{ event: Event }> = props => {
 
   return (
     <Show when={!ended()}>
-      <div class='text-2xl text-center'>
-        {info()}
-        <span class='text-4xl'>{timeStr()}</span>
+      <div class='flex items-end space-x-4'>
+        <div class={`flex-1 text-right ${text.faded}`}>{info()}</div>
+        <div class='text-4xl text-center'>{timeStr()}</div>
+        <div class='flex-1'></div>
       </div>
     </Show>
   );

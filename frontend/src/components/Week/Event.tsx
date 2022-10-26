@@ -7,7 +7,13 @@ import {
 } from 'solid-js';
 import Modal from '../../ui/Modal';
 import State from './../../lib/state';
-import { durationStr, join, minuteOfDate, timeStr } from './../../lib/util';
+import {
+  durationStr,
+  join,
+  minuteOfDate,
+  timeDiffStr,
+  timeStr,
+} from './../../lib/util';
 import { Event } from './week-util';
 
 const EventComp: Component<{ event: Event }> = props => {
@@ -79,8 +85,50 @@ const EventComp: Component<{ event: Event }> = props => {
   );
 };
 
+const CountDown: Component<{ event: Event }> = props => {
+  const [ended, setEnded] = createSignal(false);
+  const [info, setInfo] = createSignal('');
+  const [timeStr, setTimeStr] = createSignal('');
+
+  const updateTimer = () => {
+    const now = new Date();
+
+    if (now < props.event.startDate) {
+      setInfo('starts in ');
+      setTimeStr(timeDiffStr(now, props.event.startDate));
+    } else if (now < props.event.endDate) {
+      setInfo('ends in ');
+      setTimeStr(timeDiffStr(now, props.event.endDate));
+    } else {
+      setEnded(true);
+    }
+  };
+
+  const timer = setInterval(updateTimer, 1000);
+
+  createEffect(() => ended() && clearInterval(timer));
+
+  onCleanup(() => clearInterval(timer));
+
+  updateTimer();
+
+  return (
+    <Show when={!ended()}>
+      <div class='text-2xl text-center'>
+        {info()}
+        <span class='text-4xl'>{timeStr()}</span>
+      </div>
+    </Show>
+  );
+};
+
 const EventDetail: Component<{ event: Event }> = props => {
-  return <pre class='px-8 py-4'>{JSON.stringify(props.event, null, 2)}</pre>;
+  return (
+    <div class='flex flex-col space-y-4 px-8 py-4'>
+      <CountDown event={props.event} />
+      <pre>{JSON.stringify(props.event, null, 2)}</pre>
+    </div>
+  );
 };
 
 export const EventWrapper: Component<{

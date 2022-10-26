@@ -6,9 +6,29 @@ export function minuteOfDate(date: Date) {
   return date.getHours() * 60 + date.getMinutes();
 }
 
+function padZero(num: number) {
+  return num.toString().padStart(2, '0');
+}
+
 export function timeStr(date: Date) {
-  const padZero = (num: number) => num.toString().padStart(2, '0');
   return `${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
+}
+
+export function timeDiffStr(a: Date, b: Date) {
+  let s = Math.floor((b.getTime() - a.getTime()) / 1000);
+  let m = Math.floor(s / 60);
+  let h = Math.floor(m / 60);
+
+  s %= 60;
+  m %= 60;
+
+  const t = [];
+
+  h && t.push(padZero(h));
+  m && t.push(padZero(m));
+  t.push(padZero(s));
+
+  return t.join(':');
 }
 
 export function durationStr(start: Date, end: Date) {

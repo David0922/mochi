@@ -7,7 +7,7 @@ import {
 } from 'solid-js';
 import Modal from '../../ui/Modal';
 import State from './../../lib/state';
-import { durationStr, join, strTimeToMinute, timeStr } from './../../lib/util';
+import { durationStr, join, minuteOfDate, timeStr } from './../../lib/util';
 import { Event } from './week-util';
 
 const EventComp: Component<{ event: Event }> = props => {
@@ -28,8 +28,8 @@ const EventComp: Component<{ event: Event }> = props => {
   createEffect(() => {
     if (!ref) return;
 
-    const startMinute = strTimeToMinute(props.event.start);
-    const duration = strTimeToMinute(props.event.end) - startMinute;
+    const startMinute = minuteOfDate(props.event.startDate);
+    const duration = minuteOfDate(props.event.endDate) - startMinute;
 
     const maxOffset = Math.min(props.event.maxOffset, maxOverlaps);
     const offset = Math.min(props.event.offset, maxOverlaps);
@@ -61,8 +61,12 @@ const EventComp: Component<{ event: Event }> = props => {
         <div class='break-words h-full overflow-y-clip text-xs'>
           <Show
             when={multiLine()}
-            fallback={`${timeStr(props.event.start)}, ${props.event.title}`}>
-            <span>{durationStr(props.event.start, props.event.end)}</span>
+            fallback={`${timeStr(props.event.startDate)}, ${
+              props.event.title
+            }`}>
+            <span>
+              {durationStr(props.event.startDate, props.event.endDate)}
+            </span>
             <br />
             <span>{props.event.title || ''}</span>
           </Show>

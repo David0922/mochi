@@ -1,8 +1,12 @@
+import { timeStrToDate } from '../../lib/util';
+
 export interface Event {
   day?: number;
   days?: [number];
   start: string;
   end: string;
+  startDate?: Date;
+  endDate?: Date;
   title?: string;
   details?: string;
   offset?: number;
@@ -15,8 +19,10 @@ function groupEventsByDay(events: Event[]) {
   events.forEach(event => {
     if (event.day !== undefined) groups[event.day].push(event);
     else if (event.days !== undefined)
-      event.days.forEach(day => groups[day].push({ ...event }));
-    else groups.forEach(group => group.push({ ...event }));
+      event.days.forEach(day =>
+        groups[day].push({ ...event, day, days: undefined })
+      );
+    else groups.forEach((group, day) => group.push({ ...event, day }));
   });
 
   groups.forEach(group => group.sort((a, b) => a.start.localeCompare(b.start)));
@@ -55,6 +61,11 @@ function fillOverlapsAndOffset(events: Event[]) {
         );
 }
 
+function fillStartAndEndDate(event: Event) {
+  event.startDate = timeStrToDate(event.start, event.day);
+  event.endDate = timeStrToDate(event.end, event.day);
+}
+
 export async function fetchEvents(): Promise<Event[][]> {
   const url = '/weekly-plan.json';
   const response = await fetch(url);
@@ -67,7 +78,10 @@ export async function fetchEvents(): Promise<Event[][]> {
   const events: Event[] = await response.json();
   const eventGroups = groupEventsByDay(events);
 
-  eventGroups.forEach(events => fillOverlapsAndOffset(events));
+  eventGroups.forEach(events => {
+    fillOverlapsAndOffset(events);
+    events.forEach(fillStartAndEndDate);
+  });
 
   return eventGroups;
 }

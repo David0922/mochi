@@ -5,7 +5,7 @@ import {
   onCleanup,
   Show,
 } from 'solid-js';
-import Modal from '../../ui/Modal';
+import { Modal } from '../../ui';
 import State from './../../lib/state';
 import {
   durationStr,

@@ -38,7 +38,7 @@ export const dark: Color = {
     error: '',
   },
   button: {
-    primary: 'hover:bg-neutral-700',
+    primary: 'transition duration-100 hover:bg-neutral-700',
   },
   event: {
     primary: {

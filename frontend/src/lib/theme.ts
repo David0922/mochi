@@ -10,6 +10,9 @@ export interface Color {
     faded: string;
     error: string;
   };
+  button: {
+    primary: string;
+  };
   event: {
     primary: {
       border: string;
@@ -33,6 +36,9 @@ export const dark: Color = {
     secondary: 'text-cyan-300',
     faded: 'text-neutral-500',
     error: '',
+  },
+  button: {
+    primary: 'hover:bg-neutral-700',
   },
   event: {
     primary: {

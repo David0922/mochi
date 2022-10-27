@@ -1,13 +1,14 @@
 import { Component } from 'solid-js';
-import { AppBar, Icon } from '../../ui';
+import { AppBar, IconButton } from '../../ui';
 import Week from './../Week';
 
 const App: Component = () => {
   return (
     <div class='h-screen flex flex-col'>
       <AppBar>
-        <div class='flex h-16 items-center p-2'>
-          <Icon symbol='Menu' />
+        <div class='flex space-x-2 items-center p-2'>
+          <div class='flex-1' />
+          <IconButton symbol='logout' />
         </div>
       </AppBar>
       <div class='flex flex-1 overflow-hidden'>

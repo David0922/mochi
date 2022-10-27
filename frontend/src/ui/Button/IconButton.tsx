@@ -4,6 +4,7 @@ import { join } from '../../lib/util';
 
 const IconButton: Component<{
   symbol: string;
+  href?: string;
   onclick?: JSX.EventHandler<HTMLButtonElement, MouseEvent>;
 }> = props => {
   const {
@@ -11,16 +12,18 @@ const IconButton: Component<{
   } = State.getInstance().getTheme();
 
   return (
-    <button
-      onclick={props.onclick}
-      class={join(
-        'p-3',
-        'rounded-full',
-        button.primary,
-        'material-symbols-outlined'
-      )}>
-      {props.symbol}
-    </button>
+    <a href={props.href}>
+      <button
+        onclick={props.onclick}
+        class={join(
+          'p-3',
+          'rounded-full',
+          button.primary,
+          'material-symbols-outlined'
+        )}>
+        {props.symbol}
+      </button>
+    </a>
   );
 };
 

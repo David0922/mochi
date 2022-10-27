@@ -11,7 +11,7 @@ add to vscode `settings.json`
 to create a new golang module outside of `$GOPATH`
 
 ```bash
-go mod init weekly-planner-backend
+go mod init mochi-backend
 ```
 
 generate / sync `go.sum`
@@ -29,13 +29,13 @@ go build
 ### build docker image
 
 ```
-docker build -t weekly-planner-backend .
+docker build -t mochi-backend .
 ```
 
 ### run docker container
 
 ```
-docker run --rm -it -p 3000:3000 weekly-planner-backend
+docker run --rm -it -p 3000:3000 mochi-backend
 ```
 
 ### verify that it works

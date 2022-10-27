@@ -14,6 +14,6 @@ yarn start
 containerize
 
 ```bash
-docker build -t weekly-planner-frontend .
-docker run --rm -it -p 8080:80 weekly-planner-frontend
+docker build -t mochi-frontend .
+docker run --rm -it -p 8080:80 mochi-frontend
 ```

@@ -1,8 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.logo {
+  font-family: 'Ubuntu Mono', monospace;
+}
 
 .break-words {
   overflow-wrap: break-word;

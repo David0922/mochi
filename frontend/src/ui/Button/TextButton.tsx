@@ -3,6 +3,7 @@ import State from '../../lib/state';
 
 const TextButton: Component<{
   text: string;
+  href?: string;
   onclick?: JSX.EventHandler<HTMLButtonElement, MouseEvent>;
 }> = props => {
   const {
@@ -10,9 +11,11 @@ const TextButton: Component<{
   } = State.getInstance().getTheme();
 
   return (
-    <button onclick={props.onclick} class={`px-5 py-3 ${button.primary}`}>
-      {props.text}
-    </button>
+    <a href={props.href}>
+      <button onclick={props.onclick} class={`px-5 py-3 ${button.primary}`}>
+        {props.text}
+      </button>
+    </a>
   );
 };
 

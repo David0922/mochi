@@ -121,7 +121,7 @@ const CountDown: Component<{ event: Event }> = props => {
       <div class='flex items-end space-x-4'>
         <div class={`flex-1 text-right ${text.faded}`}>{info()}</div>
         <div class='text-4xl text-center'>{timeStr()}</div>
-        <div class='flex-1'></div>
+        <div class='flex-1' />
       </div>
     </Show>
   );

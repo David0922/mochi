@@ -10,11 +10,14 @@ const Notes = lazy(() => import('../Notes'));
 
 const App: Component = () => {
   const state = State.getInstance();
+  const {
+    color: { bg },
+  } = state.getTheme();
 
   return (
     <div class='h-screen flex flex-col'>
       <AppBar>
-        <div class='flex space-x-2 items-center p-2'>
+        <div class={`flex space-x-2 items-center p-2 ${bg.secondary}`}>
           <div class='logo font-bold px-5 text-xl'>mochi</div>
           <TextButton text='backlog' href='/backlog' />
           <TextButton text='board' href='/board' />

@@ -11,12 +11,16 @@ function renderMd(raw: string) {
       if (lang && hljs.getLanguage(lang)) {
         try {
           return hljs.highlight(lang, str).value;
-        } catch (err) {}
+        } catch (err) {
+          console.error(err);
+        }
       }
 
       try {
         return hljs.highlightAuto(str).value;
-      } catch (err) {}
+      } catch (err) {
+        console.error(err);
+      }
 
       return ''; // use external default escaping
     },
@@ -44,7 +48,7 @@ const Notes: Component = () => {
     <div class='max-h-full overflow-auto hide-scrollbar'>
       <div
         ref={mdRef}
-        class='max-w-screen-lg mx-auto my-8 flex flex-col space-y-8 text-xl tracking-wider leading-8 font-light'
+        class='max-w-screen-lg mx-auto my-8 flex flex-col space-y-8 text-xl tracking-wider leading-8 font-light break-words'
       />
     </div>
   );

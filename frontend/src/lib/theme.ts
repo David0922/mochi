@@ -28,7 +28,7 @@ export interface Color {
 export const dark: Color = {
   bg: {
     primary: 'bg-neutral-800',
-    secondary: 'bg-neutral-700',
+    secondary: 'bg-neutral-900',
   },
   border: 'border-neutral-700',
   text: {

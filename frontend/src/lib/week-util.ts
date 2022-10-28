@@ -1,17 +1,5 @@
-import { timeStrToDate } from '../../lib/util';
-
-export interface Event {
-  day?: number;
-  days?: [number];
-  start: string;
-  end: string;
-  startDate?: Date;
-  endDate?: Date;
-  title?: string;
-  details?: string;
-  offset?: number;
-  maxOffset?: number;
-}
+import { Event } from './schema';
+import { timeStrToDate } from './util';
 
 function groupEventsByDay(events: Event[]) {
   const groups: Event[][] = Array.from({ length: 7 }, () => []);

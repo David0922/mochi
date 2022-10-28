@@ -10,3 +10,8 @@ h6 {
 hr {
   border-top: 1px solid #404040;
 }
+
+code {
+  font-size: medium;
+  white-space: pre-wrap;
+}

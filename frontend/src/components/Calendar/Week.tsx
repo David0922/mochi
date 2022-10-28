@@ -1,8 +1,9 @@
 import { Component, createResource } from 'solid-js';
-import State from './../../lib/state';
-import { dateOfDay, join } from './../../lib/util';
+import { Event } from '../../lib/schema';
+import State from '../../lib/state';
+import { dateOfDay, join } from '../../lib/util';
+import { fetchEvents } from '../../lib/week-util';
 import { EventWrapper } from './Event';
-import { Event, fetchEvents } from './week-util';
 
 const Week: Component = () => {
   const { color } = State.getInstance().getTheme();

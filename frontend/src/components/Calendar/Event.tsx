@@ -5,16 +5,17 @@ import {
   onCleanup,
   Show,
 } from 'solid-js';
-import { Modal } from '../../ui';
-import State from './../../lib/state';
+import { Event } from '../../lib/schema';
+import State from '../../lib/state';
 import {
   durationStr,
   join,
   minuteOfDate,
+  timeDiffMs,
   timeDiffStr,
   timeStr,
-} from './../../lib/util';
-import { Event } from './week-util';
+} from '../../lib/util';
+import { Modal } from '../../ui';
 
 const EventComp: Component<{ event: Event }> = props => {
   const {
@@ -93,6 +94,7 @@ const CountDown: Component<{ event: Event }> = props => {
   const [ended, setEnded] = createSignal(false);
   const [info, setInfo] = createSignal('');
   const [timeStr, setTimeStr] = createSignal('');
+  const [percent, setPercent] = createSignal(0);
 
   const updateTimer = () => {
     const now = new Date();
@@ -103,6 +105,11 @@ const CountDown: Component<{ event: Event }> = props => {
     } else if (now < props.event.endDate) {
       setInfo('ends in');
       setTimeStr(timeDiffStr(now, props.event.endDate));
+      setPercent(() => {
+        const timePast = timeDiffMs(props.event.startDate, new Date());
+        const duration = timeDiffMs(props.event.startDate, props.event.endDate);
+        return Math.floor(100 - (timePast / duration) * 100);
+      });
     } else {
       setEnded(true);
     }
@@ -121,7 +128,7 @@ const CountDown: Component<{ event: Event }> = props => {
       <div class='flex items-end space-x-4'>
         <div class={`flex-1 text-right ${text.faded}`}>{info()}</div>
         <div class='text-4xl text-center'>{timeStr()}</div>
-        <div class='flex-1' />
+        <div class={`flex-1 ${text.faded}`}>{percent() && `${percent()}%`}</div>
       </div>
     </Show>
   );

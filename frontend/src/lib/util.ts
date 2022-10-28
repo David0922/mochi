@@ -14,8 +14,12 @@ export function timeStr(date: Date) {
   return `${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
 }
 
+export function timeDiffMs(a: Date, b: Date) {
+  return b.getTime() - a.getTime();
+}
+
 export function timeDiffStr(a: Date, b: Date) {
-  let s = Math.floor((b.getTime() - a.getTime()) / 1000);
+  let s = Math.floor(timeDiffMs(a, b) / 1000);
   let m = Math.floor(s / 60);
   let h = Math.floor(m / 60);
 
